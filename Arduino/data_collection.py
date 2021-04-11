@@ -3,12 +3,13 @@ import numpy as np
 import pandas as pd
 import time
 
-NUM_SENSORS = 8
+NUM_SENSORS = 10
 
 
 def main():
-    ser = serial.Serial('COM29', 9600)
-    output = [['Reading 1', 'Reading 2', 'Reading 3', 'Reading 4', 'Reading 5', 'Reading 6', 'Reading 7', 'Reading 8']]
+    ser = serial.Serial('COM11', 115200)
+    output = [['Reading 1', 'Reading 2', 'Reading 3', 'Reading 4', 'Reading 5', 'Reading 6', 'Reading 7', 'Reading 8',
+               'Reading 9', 'Reading 10']]
     collect(ser, output)
 
 
@@ -20,17 +21,18 @@ def calibrate(ser):
                        strip(). \
                        split(',')). \
             astype(int)
+        print(row)
         if len(row) == NUM_SENSORS:
             data.append(row)
 
     temp = data[3:]
     baseline = np.mean(temp, axis=0)
-    print(baseline)
     return baseline
 
 
 def collect(ser, output):
     baseline = calibrate(ser)
+    print(baseline)
     while ser.is_open:
         # AUTOCALIBRATE GOES HERE
         if False:
@@ -50,12 +52,13 @@ def collect(ser, output):
     ser.close()
 
     df = pd.DataFrame(output[1:], columns=output[0])
-    df['Label'] = 'left leg cross'
+    label = "left_leg_cross"
+    df['Label'] = label
     df['Baseline'] = ",".join(baseline.astype(str))
     # for i in range(1, 5):
     # df = df[df['Reading '+ str(i)] > baseline[i-1] + 50]
     df = df[300:]
-    df.to_csv('../data/left_leg_cross_kevin.csv', index=False)
+    df.to_csv('../data/{}.csv'.format(label), index=False)
 
     return df
 

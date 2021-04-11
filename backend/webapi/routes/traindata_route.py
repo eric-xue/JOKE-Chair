@@ -1,11 +1,13 @@
 from flask import Blueprint, request, jsonify
 from backend.repository.repository import TrainingDataRepository
 from backend.db.model import TrainingData
+
 traindata_routes = Blueprint('traindata_routes', __name__, url_prefix='/user')
 
 TrainingDataRepository = TrainingDataRepository()
 
-@traindata_routes.route('/get_traindata',methods=['GET'])
+
+@traindata_routes.route('/get_traindata', methods=['GET'])
 def get_usrdata():
     """
     INPUT: Takes arg request from url
@@ -30,7 +32,7 @@ def get_usrdata():
     return jsonify(formatted_data), 200
 
 
-@traindata_routes.route('/add_traindata',methods=['POST'])
+@traindata_routes.route('/add_traindata', methods=['POST'])
 def add_usrdata():
     """
     INPUT: Takes POST request + json object.
@@ -72,7 +74,9 @@ def add_usrdata():
     # TrainingDataRepository.insert_user_trainingdata(train_dat)
     # return jsonify(str(train_dat)), 200
 
-@traindata_routes.route('/',methods=['DELETE'])
+
+
+@traindata_routes.route('/', methods=['DELETE'])
 def clear_usrdata():
     """
     INPUT: Takes DELETE REQUEST

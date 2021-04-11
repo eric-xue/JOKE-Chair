@@ -6,7 +6,7 @@ from classifier.knearestneighbor import KNearestNeighbor
 
 
 def test_clf(clf, seed):
-    df = pd.read_csv('../data/combined_data.csv')
+    df = pd.read_csv('data/combined_data.csv')
     # Get dictionary for categorical coding
     c = df.Label.astype('category')
     code_to_posture = dict(enumerate(c.cat.categories))

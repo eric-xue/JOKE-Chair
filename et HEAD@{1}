@@ -1,0 +1,37 @@
+[33m669e596[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to HEAD
+[33m669e596[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: pull: Fast-forward
+[33m3650d8c[m HEAD@{2}: merge omar: Merge made by the 'recursive' strategy.
+[33mebf5f90[m HEAD@{3}: pull: Fast-forward
+[33maab8f31[m HEAD@{4}: checkout: moving from omar to main
+[33m993b3bc[m[33m ([m[1;31morigin/omar[m[33m, [m[1;32momar[m[33m)[m HEAD@{5}: commit: Code for demonstration
+[33m7c5b220[m HEAD@{6}: checkout: moving from omar to omar
+[33m7c5b220[m HEAD@{7}: checkout: moving from main to omar
+[33maab8f31[m HEAD@{8}: reset: moving to HEAD
+[33maab8f31[m HEAD@{9}: pull: Fast-forward
+[33m9e69cca[m HEAD@{10}: merge omar: Merge made by the 'recursive' strategy.
+[33m0ad6eaf[m HEAD@{11}: pull: Fast-forward
+[33m1aa4bdc[m HEAD@{12}: checkout: moving from omar to main
+[33m7c5b220[m HEAD@{13}: checkout: moving from main to omar
+[33m1aa4bdc[m HEAD@{14}: checkout: moving from omar to main
+[33m7c5b220[m HEAD@{15}: commit: backend init, with longterm posture storage code
+[33m1aa4bdc[m HEAD@{16}: merge main: Fast-forward
+[33m2865668[m HEAD@{17}: checkout: moving from main to omar
+[33m1aa4bdc[m HEAD@{18}: pull: Fast-forward
+[33m2865668[m HEAD@{19}: checkout: moving from omar to main
+[33m2865668[m HEAD@{20}: checkout: moving from main to omar
+[33m2865668[m HEAD@{21}: checkout: moving from omar to main
+[33m2865668[m HEAD@{22}: checkout: moving from main to omar
+[33m2865668[m HEAD@{23}: checkout: moving from omar to main
+[33m2865668[m HEAD@{24}: merge main: Fast-forward
+[33ma43935e[m HEAD@{25}: checkout: moving from main to omar
+[33m2865668[m HEAD@{26}: pull: Fast-forward
+[33m4997070[m HEAD@{27}: checkout: moving from omar to main
+[33ma43935e[m HEAD@{28}: commit: init Random Forest Classifier
+[33m4997070[m HEAD@{29}: merge main: Fast-forward
+[33m3746a46[m HEAD@{30}: checkout: moving from main to omar
+[33m4997070[m HEAD@{31}: checkout: moving from omar to main
+[33m3746a46[m HEAD@{32}: checkout: moving from main to omar
+[33m4997070[m HEAD@{33}: pull: Fast-forward
+[33m3746a46[m HEAD@{34}: checkout: moving from omar to main
+[33m3746a46[m HEAD@{35}: checkout: moving from main to omar
+[33m3746a46[m HEAD@{36}: clone: from https://github.com/jplulu/JOKE-Chair

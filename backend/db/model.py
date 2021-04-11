@@ -35,8 +35,12 @@ class TrainingData(db.Model):
     def __repr__(self):
         return "<TrainingData(uid=%s, timestamp=%s, sensor1=%s, sensor2=%s, sensor3=%s, sensor4=%s" \
                ", sensor5=%s, sensor6=%s, sensor7=%s, sensor8=%s, classification=%s)>" % (self.uid, self.timestamp,
-        self.sensor1, self.sensor2, self.sensor3, self.sensor4, self.sensor5, self.sensor6, self.sensor7, self.sensor8,
+                                                                                          self.sensor1, self.sensor2,
+                                                                                          self.sensor3, self.sensor4,
+                                                                                          self.sensor5, self.sensor6,
+                                                                                          self.sensor7, self.sensor8,
                                                                                           self.classification)
+
     def serialize(self):
         aggregate_sensors = [self.sensor1, self.sensor2, self.sensor3, self.sensor4, self.sensor5, self.sensor6,
                              self.sensor7, self.sensor8]
@@ -44,7 +48,7 @@ class TrainingData(db.Model):
             "uid": self.uid,
             "timestamp": self.timestamp,
             "sensor": aggregate_sensors,
-            "classification":self.classification
+            "classification": self.classification
         }
         return payload
 
@@ -63,7 +67,32 @@ class UserDataModel(db.Model):
         return "<UserDataModel(uid=%s, datamodel=%s)>" % (self.uid, self.datamodel)
 
 
+class UserLogin(db.Model):
+    __tablename__ = "userlogin"
+
+    uid = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255))
+    password = db.Column(db.String(255))
+
+    def __init__(self, email, password):
+        # self.uid = uid
+        self.email = email
+        self.password = password
+
+    def serialize(self):
+        payload = {
+            "email": self.email,
+            "password": self.password,
+            "uid": self.uid
+        }
+        return payload
+
+    def __repr__(self):
+        return "<UserLogin(uid={}, email={}, password={}>".format(self.uid, self.email, self.password)
+
+
 if __name__ == "__main__":
+    print()
     try:
         db.engine.execute("DROP DATABASE posturechair;")
     except OperationalError:
@@ -72,4 +101,3 @@ if __name__ == "__main__":
     db.engine.execute("USE posturechair;")
 
     db.create_all()
-
