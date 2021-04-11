@@ -1,4 +1,7 @@
 from sklearn.linear_model import LogisticRegression
+from sklearn2pmml.pipeline import PMMLPipeline
+from sklearn2pmml import sklearn2pmml
+
 import numpy as np
 import pandas as pd
 import joblib
@@ -27,6 +30,7 @@ df = pd.read_csv('../data/combined_data.csv')
 # Get dictionary for categorical coding
 c = df.Label.astype('category')
 code_to_posture = dict(enumerate(c.cat.categories))
+print(code_to_posture)
 # Categorical coding
 df['Label'] = df['Label'].astype('category').cat.codes
 
@@ -54,16 +58,24 @@ df_x = (df_x - df_x.mean()) / df_x.std()
 x_train, x_test = np.split(df_x, [int(0.8 * len(df_x))])
 y_train, y_test = np.split(df_y, [int(0.8 * len(df_y))])
 
-clf = LogisticRegressionClassifier()
-clf.fit(x_train, y_train)
-y_predict = clf.predict(x_test)
+# PMML Conversion
+pipeline = PMMLPipeline([
+    ("classifier", LogisticRegression(penalty='l2', max_iter=1000, solver='lbfgs', multi_class='multinomial'))
+])
+pipeline.fit(df_x, df_y)
+sklearn2pmml(pipeline, "lr.pmml")
 
-# Converting coding back to posture
-predicted_postures = []
-for y in y_predict:
-    predicted_postures.append(code_to_posture[y])
-print(predicted_postures)
+# clf = LogisticRegressionClassifier()
+# clf.fit(x_train, y_train)
+# y_predict = clf.predict(x_test)
+#
+# # Converting coding back to posture
+# predicted_postures = []
+# for y in y_predict:
+#     predicted_postures.append(code_to_posture[y])
+# print(predicted_postures)
+#
+# print(clf.score(x_test, y_test))
+# file_name = "logistic_regression_model.pkl"
+# clf.export(file_name)
 
-print(clf.score(x_test, y_test))
-file_name = "logistic_regression_model.pkl"
-clf.export(file_name)
