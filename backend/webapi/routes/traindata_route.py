@@ -51,10 +51,26 @@ def add_usrdata():
     timestamp = data["timestamp"]
     sensor = data["sensors"]
     classif = data["classification"]
-    train_dat = TrainingData(uid, timestamp, sensor[0], sensor[1], sensor[2], sensor[3], sensor[4]
-                             , sensor[5], sensor[6], sensor[7], classif)
-    TrainingDataRepository.insert_user_trainingdata(train_dat)
-    return jsonify(str(train_dat)), 200
+
+    list_length = len(uid)
+    if all(len(x) == list_length for x in [uid, timestamp, sensor, classif]):
+        created_data = []
+        for element in range(list_length):
+            train_dat = TrainingData(uid[element], timestamp[element], sensor[element][0], sensor[element][1],
+                                     sensor[element][2], sensor[element][3], sensor[element][4]
+                                     , sensor[element][5], sensor[element][6], sensor[element][7], classif[element])
+            TrainingDataRepository.insert_user_trainingdata(train_dat)
+            created_data += [train_dat]
+        return jsonify(str(created_data)), 200
+    else:
+        return jsonify("Wrong length."), 400
+
+
+
+    # train_dat = TrainingData(uid, timestamp, sensor[0], sensor[1], sensor[2], sensor[3], sensor[4]
+    #                          , sensor[5], sensor[6], sensor[7], classif)
+    # TrainingDataRepository.insert_user_trainingdata(train_dat)
+    # return jsonify(str(train_dat)), 200
 
 @traindata_routes.route('/',methods=['DELETE'])
 def clear_usrdata():

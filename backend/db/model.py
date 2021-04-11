@@ -53,7 +53,7 @@ class UserDataModel(db.Model):
     __tablename__ = "userdatamodel"
 
     uid = db.Column(db.Integer, primary_key=True)
-    datamodel = db.Column(db.PickleType)
+    datamodel = db.Column(db.TEXT(64))
 
     def __init__(self, uid, datamodel):
         self.uid = uid

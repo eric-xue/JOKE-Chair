@@ -7,4 +7,4 @@ app.register_blueprint(traindata_routes)
 app.register_blueprint(usermodel_routes)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(host='0.0.0.0',debug=False)
